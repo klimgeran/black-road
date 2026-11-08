@@ -1,0 +1,80 @@
+@import "@fontsource/unbounded/cyrillic-500.css";
+@import "@fontsource/unbounded/cyrillic-700.css";
+@import "@fontsource/unbounded/latin-500.css";
+@import "@fontsource/unbounded/latin-700.css";
+@import "@fontsource/manrope/cyrillic-400.css";
+@import "@fontsource/manrope/cyrillic-500.css";
+@import "@fontsource/manrope/cyrillic-700.css";
+@import "@fontsource/manrope/latin-400.css";
+@import "@fontsource/manrope/latin-500.css";
+@import "@fontsource/manrope/latin-700.css";
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #f6f4ef;
+  --color-canvas: #ffffff;
+  --color-ink: #121212;
+  --color-mute: #6b665e;
+  --color-line: #ddd8cf;
+  --color-gas: #e23b2a;
+  --color-coin: #c88912;
+  --color-road: #141414;
+  --font-display: "Unbounded", "Manrope", sans-serif;
+  --font-sans: "Manrope", "Segoe UI", sans-serif;
+}
+
+@layer base {
+  html {
+    overscroll-behavior: none;
+    background: var(--color-paper);
+  }
+  body {
+    min-height: 100%;
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+  button {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@keyframes road-dash {
+  to {
+    background-position: 48px 0;
+  }
+}
+
+.asphalt-dash {
+  background-image: linear-gradient(
+    90deg,
+    transparent 0 14px,
+    var(--color-paper) 14px 26px,
+    transparent 26px 48px
+  );
+  background-size: 48px 100%;
+  background-repeat: repeat-x;
+  animation: road-dash 0.7s linear infinite;
+}
+
+.safe-top {
+  padding-top: max(0.75rem, env(safe-area-inset-top));
+}
+
+.safe-bottom {
+  padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+}
+
+.safe-bottom-play {
+  padding-bottom: max(4.25rem, calc(env(safe-area-inset-bottom) + 3.25rem));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .asphalt-dash {
+    animation: none;
+  }
+}
